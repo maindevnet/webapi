@@ -1,0 +1,15 @@
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\QLKS.Repository.dll.config
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\QLKS.Repository.dll
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\QLKS.Repository.pdb
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\EntityFramework.dll
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\EntityFramework.SqlServer.dll
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\QLKS.Data.dll
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\QLKS.Data.pdb
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\QLKS.Data.dll.config
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\EntityFramework.xml
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\bin\Debug\EntityFramework.SqlServer.xml
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\obj\Debug\QLKS.Repository.csproj.AssemblyReference.cache
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\obj\Debug\QLKS.Repository.csproj.CoreCompileInputs.cache
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\obj\Debug\QLKS.Repository.csproj.CopyComplete
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\obj\Debug\QLKS.Repository.dll
+E:\WebApiDemo\QlKS.WebApi\QLKS.Repository\obj\Debug\QLKS.Repository.pdb

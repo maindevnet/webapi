@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Sex" Type="Boolean" />
+    <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Passport" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfHire" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="HD_Id" Type="Int32" />
+    <Property Name="Rooms_Id" Type="Int32" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_HD_Id" FromRole="Customers" ToRole="Invoice" />
+    <NavigationProperty Name="Room" Relationship="Self.FK_Room_Id" FromRole="Customers" ToRole="Rooms" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NV_Id" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DateOfPayment" Type="DateTime" Precision="0" />
+    <Property Name="Rooms_Id" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_HD_Id" FromRole="Invoice" ToRole="Customers" />
+    <NavigationProperty Name="InvoiceDetails" Relationship="Self.FK_Invoice_Id" FromRole="Invoice" ToRole="InvoiceDetail" />
+    <NavigationProperty Name="Room" Relationship="Self.FK_Rooms_Id" FromRole="Invoice" ToRole="Rooms" />
+  </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Invoice_Id" Type="Int32" />
+    <Property Name="Product_Id" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Unit" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DateService" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_Id" FromRole="InvoiceDetail" ToRole="Invoice" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Id" FromRole="InvoiceDetail" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="KindOfRoom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_KindOfRooms_Id" FromRole="KindOfRooms" ToRole="Rooms" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Unit" Type="String" MaxLength="56" FixedLength="false" Unicode="true" />
+    <Property Name="TypeProducts_Id" Type="Int32" />
+    <NavigationProperty Name="InvoiceDetails" Relationship="Self.FK_Product_Id" FromRole="Products" ToRole="InvoiceDetail" />
+    <NavigationProperty Name="TypeProduct" Relationship="Self.FK_TypeProducts_Id" FromRole="Products" ToRole="TypeProducts" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="KindOfRooms_Id" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Room_Id" FromRole="Rooms" ToRole="Customers" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK_Rooms_Id" FromRole="Rooms" ToRole="Invoice" />
+    <NavigationProperty Name="KindOfRoom" Relationship="Self.FK_KindOfRooms_Id" FromRole="Rooms" ToRole="KindOfRooms" />
+  </EntityType>
+  <EntityType Name="TypeProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_TypeProducts_Id" FromRole="TypeProducts" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="56" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="56" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_HD_Id">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="HD_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Id">
+    <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="Rooms_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Id">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceDetail">
+        <PropertyRef Name="Invoice_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Id">
+    <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Rooms_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Id">
+    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceDetail">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KindOfRooms_Id">
+    <End Role="KindOfRooms" Type="Self.KindOfRoom" Multiplicity="0..1" />
+    <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KindOfRooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rooms">
+        <PropertyRef Name="KindOfRooms_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TypeProducts_Id">
+    <End Role="TypeProducts" Type="Self.TypeProduct" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeProducts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="TypeProducts_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLKSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetail" />
+    <EntitySet Name="KindOfRooms" EntityType="Self.KindOfRoom" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="TypeProducts" EntityType="Self.TypeProduct" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_HD_Id" Association="Self.FK_HD_Id">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Id" Association="Self.FK_Room_Id">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Id" Association="Self.FK_Invoice_Id">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Id" Association="Self.FK_Rooms_Id">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Id" Association="Self.FK_Product_Id">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KindOfRooms_Id" Association="Self.FK_KindOfRooms_Id">
+      <End Role="KindOfRooms" EntitySet="KindOfRooms" />
+      <End Role="Rooms" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TypeProducts_Id" Association="Self.FK_TypeProducts_Id">
+      <End Role="TypeProducts" EntitySet="TypeProducts" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
